@@ -1,6 +1,8 @@
+from typing import Optional
+
 import dateparser as dateparser
 import jsonpickle as jsonpickle
-from datetime import datetime
+from datetime import datetime, date
 from .constants import FORMATS
 
 
@@ -35,3 +37,20 @@ def string2datetime(value: str) -> datetime:
     date_formats = [f.format(sep=sep) for f in dmy + ymd for sep in separators]
 
     return dateparser.parse(value, date_formats=date_formats, languages=['pt', 'en'])
+
+def datetime2json(value: (datetime, date)) -> Optional[str]:
+    """
+    force use only 1 date format like "YYYY-mm-dd HH:mm:ss"
+    """
+    if value is None:
+        return None
+
+    if not isinstance(value, (datetime, date)):
+        raise ValueError(f'{value} isn\'t a valid datetime or date type')
+
+    value = value.strftime('%Y-%m-%d %H:%M:%S')
+
+    if '00:00:00' in value:
+        value = value.split(' ')[0]
+
+    return value
