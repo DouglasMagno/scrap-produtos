@@ -3,12 +3,11 @@ import traceback
 import requests
 from requests import Response
 
-from _shared import product
-from _shared.product import Product
+from .models import Product
 
 
 class Scraper:
-    def __init__(self, product: product, parser):
+    def __init__(self, product: Product, parser):
         self.product = product
         self.parser = parser
 
@@ -26,7 +25,7 @@ class Scraper:
             traceback.print_exc()
             return None
 
-    def parse(self, response_html) -> product:
+    def parse(self, response_html) -> Product:
         return self.parser.handle(response_html, self.product)
 
     def to_json(self):
@@ -36,6 +35,6 @@ class Scraper:
         try:
             response_html = self.get_html()
             self.product = self.parse(response_html)
-            return self.product
+            return self.product.to_dict()
         except Exception as e:
             traceback.print_exc()
