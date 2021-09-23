@@ -1,7 +1,7 @@
 import os
 
-from _shared.server import Server
-from _shared.service import Service
+from src._shared.server import Server
+from src._shared.service import Service
 
 if __name__ == '__main__':
     service = Service()
