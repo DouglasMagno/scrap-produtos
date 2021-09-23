@@ -54,7 +54,7 @@ def pre_save_updated_at(sender, document):
     """
     update field "updated_at" in doc
     """
-    document.updated_at = datetime.utcnow()
+    document.updated_at = datetime.now()
 
 
 # ~=~=~= Models
@@ -74,6 +74,7 @@ class Product(DynamicDocument):
     price = FloatField(required=True)
     description = StringField(required=True)
     url = URLField(required=True)
+    image_url = URLField(required=True)
     created_at = DateTimeField(default=datetime.now)
     updated_at = DateTimeField()
 

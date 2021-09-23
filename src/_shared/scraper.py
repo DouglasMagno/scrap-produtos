@@ -35,6 +35,6 @@ class Scraper:
         try:
             response_html = self.get_html()
             self.product = self.parse(response_html)
-            return self.product.to_dict()
+            return self.product
         except Exception as e:
             traceback.print_exc()

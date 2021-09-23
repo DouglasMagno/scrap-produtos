@@ -1,11 +1,10 @@
 import traceback
 import os
 
-from flask import Response, Flask, request, make_response, send_file
+from flask import Response, Flask, request, send_file
 from flask_swagger_ui import get_swaggerui_blueprint
 
-from _shared.helpers import flask_json_response
-from _shared.service import Service
+from src._shared.helpers import flask_json_response
 
 # from sentry_sdk.integrations.flask import FlaskIntegration
 
