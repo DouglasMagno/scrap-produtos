@@ -1,12 +1,14 @@
 # scrap-produtos
 Scrap produtos
 
-- scrap
+ok - scrap
   - receive url 
   - get data
   - return json
-- persist
-  - check database if exists
-  - save scrap
-- test
-- docker e deploy
+ok - persist
+  ok - check database if exists
+  ok - save scrap
+  ok - test
+  - docker e deploy
+
+python -m unittest discover -s .\tests -p '*_test.py'
