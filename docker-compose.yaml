@@ -1,0 +1,38 @@
+version: '3.7'
+
+services:
+
+  # _API
+  scrap_api:
+    build:
+        context: .
+    env_file:
+      - ./.env
+
+    # dev - up locally
+    container_name: ${CONTAINER_NAME:-dev-scrap-api}
+#    restart: always
+    networks:
+        - dev-scrap-network
+    ports:
+        - "5000:5000"
+
+
+  # DEV Data - MongoDB
+  scrap_mongodb:
+    container_name: ${CONTAINER_NAME:-dev-scrap-mongodb}
+    image: mongo
+    restart: always
+
+    networks:
+        - dev-scrap-network
+    ports:
+        - "27017:27017"
+    volumes:
+        - ../data/db:/data/db
+
+# DEV Network
+networks:
+  dev-scrap-network:
+    name: dev-scrap-network
+    driver: bridge
