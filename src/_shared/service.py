@@ -31,7 +31,7 @@ class Service:
             product.save()
         except:
             traceback.print_exc()
-        return product.to_dict()
+        return product.to_dict() if product else None
 
     def choose_parser(self, url):
         parsers = {
