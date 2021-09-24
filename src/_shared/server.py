@@ -100,7 +100,10 @@ class EndpointAction(object):
                     return flask_json_response(messages,
                                                400)
 
-            self.response = self.action(**args)
+            try:
+                self.response = self.action(**args)
+            except Exception as e:
+                return flask_json_response({'error': str(e)}, 400)
         else:
             self.response = self.action(**args)
         return self.response
