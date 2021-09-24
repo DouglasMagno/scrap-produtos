@@ -1,6 +1,4 @@
 from datetime import datetime
-
-from bson import DBRef, ObjectId
 from mongoengine import (
     connect, DynamicDocument, signals, Document, EmbeddedDocument,
     IntField, StringField, URLField, BooleanField, DateTimeField, ListField,
@@ -12,24 +10,6 @@ from .constants import ENV
 from .helpers import datetime2json
 
 db = connect(ENV.SOLUTION, host=f"{ENV.MONGO_URL}")
-
-
-# ~=~=~= Custom fields and stuff related only to models
-class CustomReferenceField(ReferenceField):
-    """
-    custom field type to pass a model directly as a reference
-    """
-
-    def validate(self, value):
-        if not isinstance(value, (self.document_type, LazyReference, DBRef, ObjectId)):
-            self.error('A ReferenceField only accepts DBRef, LazyReference, ObjectId or documents')
-
-        if isinstance(value, Document) and value.pk is None:
-            self.error('You can only reference documents once they have been saved to the database')
-
-        if self.document_type._meta.get('abstract') and not isinstance(value, self.document_type):
-            klass = self.document_type._class_name
-            self.error(f'{klass} is not an instance of abstract reference type {klass}')
 
 
 def handler(event):
