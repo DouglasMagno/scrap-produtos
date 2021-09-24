@@ -1,0 +1,67 @@
+openapi: '3.0.0'
+info:
+  title: Scrap Product
+  description: A scrap bot to get product data of Americanas and Magalu websites
+  version: '1.0.0'
+
+paths:
+  '/get-product-data':
+    get:
+      summary: 'Get product data and retuns json'
+      parameters:
+        - in: query
+          name: url
+          description: Url of product
+          schema:
+            type: string
+            example: 'https://www.americanas.com.br/produto/134450883'
+      responses:
+        200:
+          description: 'Returns json with product data'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  title:
+                    type: string
+                    description: Title of product.
+                    example: New full 4K TV
+                  price:
+                    type: number
+                    description: Price of product.
+                    example: 3999.99
+                  description:
+                    type: string
+                    description: Description of product.
+                    example: New full 4K TV with Wi-Fi
+                  url:
+                    type: string
+                    description: Url of product.
+                    example: https://www.americanas.com.br/produto/134450883
+                  image_url:
+                    type: string
+                    description: Image url of product.
+                    example: https://images-americanas.b2w.io/produtos/01/00/img/134450/8/134450891_1SZ.jpg
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: Moment of product creation.
+                  updated_at:
+                    type: string
+                    format: date-time
+                    description: Moment of last product update.
+        400:
+          description: 'No parser for this website'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Description error.
+                    example: No parser
+      tags:
+        - Scrap Product
+
