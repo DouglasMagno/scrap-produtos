@@ -1,7 +1,7 @@
 openapi: '3.0.0'
 info:
   title: Scrap Product
-  description: A scrap bot to get product data of Americanas and Magalu websites
+  description: A scrap bot to get product data of Americanas
   version: '1.0.0'
 
 paths:

@@ -1,7 +1,7 @@
 # Scrap produtos
 
 
-Web scraping bot that seeks data from the Americanas or Magalu ecommerce.
+Web scraping bot that seeks data from the Americanas ecommerce.
 
 # Requirements
 

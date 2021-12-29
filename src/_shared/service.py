@@ -2,7 +2,6 @@ import traceback
 from datetime import timedelta, datetime
 
 from src.parsers.americanas import Americanas
-from src.parsers.magalu import Magalu
 from .models import Product
 from .scraper import Scraper
 
@@ -36,7 +35,6 @@ class Service:
     def choose_parser(self, url):
         parsers = {
             'americanas': Americanas(),
-            'magazineluiza': Magalu()
         }
 
         for parser in parsers:
